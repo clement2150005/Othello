@@ -6,7 +6,7 @@
 /*   By: ccolin <ccolin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 11:38:11 by ccolin            #+#    #+#             */
-/*   Updated: 2024/09/14 14:35:31 by ccolin           ###   ########.fr       */
+/*   Updated: 2024/09/14 16:20:41 by ccolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void	is_playable(t_param *param, int first)
 	char	player;
 	char	opponent;
 	char	opponentc;
-	printf("is_playable\n");fflush(stdout);
 	if (param->board->blackturn)
 	{
 		player = B;
@@ -42,7 +41,6 @@ void	is_playable(t_param *param, int first)
 			x++;
 			if (param->board->board[y][x] == E || param->board->board[y][x] == EC)
 			{
-				printf("found empty spot");fflush(stdout);
 				if (is_sandwichl(y, x, player, opponent, opponentc, param))
 					return ;
 				if (is_sandwichr(y, x, player, opponent, opponentc, param))

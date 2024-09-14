@@ -6,7 +6,7 @@
 /*   By: ccolin <ccolin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 12:28:17 by ccolin            #+#    #+#             */
-/*   Updated: 2024/09/14 15:55:47 by ccolin           ###   ########.fr       */
+/*   Updated: 2024/09/14 16:20:40 by ccolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	place(t_param *param)
 {
-	printf("place\n");fflush(stdout);
 	if (param->board->game_end)
 		return;
 	(void)param;
@@ -24,8 +23,6 @@ void	place(t_param *param)
 	find_cursor(param, &cursor);
 	if (sandwich(param, &cursor))
 	{
-		printf("sandwich\n");fflush(stdout);
-		print_board(param->board);
 		is_playable(param, 1);
 		return ;
 	}

@@ -6,7 +6,7 @@
 /*   By: ccolin <ccolin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 12:28:17 by ccolin            #+#    #+#             */
-/*   Updated: 2024/09/14 10:40:36 by ccolin           ###   ########.fr       */
+/*   Updated: 2024/09/14 15:55:47 by ccolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 
 void	place(t_param *param)
 {
+	printf("place\n");fflush(stdout);
+	if (param->board->game_end)
+		return;
 	(void)param;
 	t_cursor	cursor;
 	cursor.x = -1;
@@ -21,19 +24,19 @@ void	place(t_param *param)
 	find_cursor(param, &cursor);
 	if (sandwich(param, &cursor))
 	{
-		if (param->board->blackturn)
-			param->board->blackturn = 0;
-		else
-			param->board->blackturn = 1;
+		printf("sandwich\n");fflush(stdout);
+		print_board(param->board);
+		is_playable(param, 1);
 		return ;
 	}
-	system("afplay ./sounds/failure.mp3 &");
+	system("afplay ./sounds/failure.wav &");
 }
 
 void	right(t_param *param)
 {
+	if (param->board->game_end)
+		return;
 	t_cursor	cursor;
-	printf("right");
 	cursor.x = -1;
     cursor.y = -1;
 	find_cursor(param, &cursor);
@@ -57,12 +60,13 @@ void	right(t_param *param)
 
 void	left(t_param *param)
 {
+		if (param->board->game_end)
+	return;
 	t_cursor	cursor;
-	printf("left\n");
-	cursor.x = -1; // Default value if cursor is not found
+	cursor.x = -1;
     cursor.y = -1;
 	find_cursor(param, &cursor);
-	if (cursor.x == 0) // Check if at the left edge of the board
+	if (cursor.x == 0)
 		return ;
 	if (param->board->board[cursor.y][cursor.x] == EC)
 		param->board->board[cursor.y][cursor.x] = E;
@@ -81,12 +85,13 @@ void	left(t_param *param)
 
 void	down(t_param *param)
 {
+	if (param->board->game_end)
+		return;
 	t_cursor	cursor;
-	printf("down\n");
-	cursor.x = -1; // Default value if cursor is not found
+	cursor.x = -1;
     cursor.y = -1;
 	find_cursor(param, &cursor);
-	if (cursor.y == 7) // Check if at the bottom edge of the board
+	if (cursor.y == 7)
 		return ;
 	if (param->board->board[cursor.y][cursor.x] == EC)
 		param->board->board[cursor.y][cursor.x] = E;
@@ -105,9 +110,10 @@ void	down(t_param *param)
 
 void	up(t_param *param)
 {
+	if (param->board->game_end)
+		return;
 	t_cursor	cursor;
-	printf("up\n");
-	cursor.x = -1; // Default value if cursor is not found
+	cursor.x = -1;
     cursor.y = -1;
 	find_cursor(param, &cursor);
 	if (cursor.y == 0)
@@ -135,13 +141,27 @@ int	events(int keycode, void *param)
 	int		l;
 	int		r;
 	int		e;
-	printf("%d", keycode);
+	int		just_restarted;
 	p = (t_param *)param;
 	u = 126;
 	d = 125;
 	l = 123;
 	r = 124;
 	e = 36;
+	just_restarted = 0;
+	if (p->board->game_end)
+		{
+			p->board->game_end = 0;
+			initialize_board(p->board);
+			ft_render_board(p->board, p->mlx);
+			just_restarted = 1;
+			return (0);
+		}
+	if (just_restarted == 1)
+	{
+		just_restarted = 0;
+		return (0);
+	}
 	if (keycode == u)
 		up(p);
 	if (keycode == l)

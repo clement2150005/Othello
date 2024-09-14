@@ -6,7 +6,7 @@
 /*   By: ccolin <ccolin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 09:18:53 by ccolin            #+#    #+#             */
-/*   Updated: 2024/09/13 15:51:01 by ccolin           ###   ########.fr       */
+/*   Updated: 2024/09/14 12:28:03 by ccolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,5 @@ void	initialize_board(t_board *board)
 	board->height = 8 * TILE;
 	board->width = 8 * TILE;
 	board->blackturn = 1;
+	board->game_end = 0;
 }

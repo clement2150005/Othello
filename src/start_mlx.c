@@ -6,7 +6,7 @@
 /*   By: ccolin <ccolin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 09:19:19 by ccolin            #+#    #+#             */
-/*   Updated: 2024/09/13 15:50:58 by ccolin           ###   ########.fr       */
+/*   Updated: 2024/09/14 15:07:59 by ccolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,11 +75,17 @@ void	ft_load_textures(t_mlx *mlx)
 	mlx->height_bcursor = malloc(sizeof(int));
 	mlx->height_wcursor = malloc(sizeof(int));
 	mlx->width_wcursor = malloc(sizeof(int));
+	mlx->width_blackv = malloc(sizeof(int));
+	mlx->height_blackv = malloc(sizeof(int));
+	mlx->width_whitev = malloc(sizeof(int));
+	mlx->height_whitev = malloc(sizeof(int));
 	mlx->empty = mlx_xpm_file_to_image(mlx->mlx, EMPTY, mlx->width_empty, mlx->height_empty);
 	mlx->black = mlx_xpm_file_to_image(mlx->mlx, BLACK, mlx->width_black, mlx->height_black);
 	mlx->white = mlx_xpm_file_to_image(mlx->mlx, WHITE, mlx->width_white, mlx->height_white);
 	mlx->bcursor = mlx_xpm_file_to_image(mlx->mlx, BCURSOR, mlx->width_wcursor, mlx->height_wcursor);
 	mlx->wcursor = mlx_xpm_file_to_image(mlx->mlx, WCURSOR, mlx->width_bcursor, mlx->height_bcursor);
+	mlx->blackv = mlx_xpm_file_to_image(mlx->mlx, BLACKV, mlx->width_blackv, mlx->height_blackv);
+	mlx->whitev = mlx_xpm_file_to_image(mlx->mlx, WHITEV, mlx->width_whitev, mlx->height_whitev);
 }
 
 void	start_mlx(t_board *board, t_mlx *mlx)

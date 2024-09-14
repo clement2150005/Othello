@@ -6,7 +6,7 @@
 /*   By: ccolin <ccolin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 09:33:30 by ccolin            #+#    #+#             */
-/*   Updated: 2024/09/13 15:50:59 by ccolin           ###   ########.fr       */
+/*   Updated: 2024/09/14 15:09:18 by ccolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,10 @@ void	free_textures(t_mlx *mlx)
 	free(mlx->height_bcursor);
 	free(mlx->width_wcursor);
 	free(mlx->height_wcursor);
+	free(mlx->width_blackv);
+	free(mlx->height_blackv);
+	free(mlx->width_whitev);
+	free(mlx->height_whitev);
 }
 
 void	freeboard(char **board)
@@ -51,6 +55,10 @@ void	unload_textures(t_mlx *mlx)
 		mlx_destroy_image(mlx->mlx, mlx->wcursor);
 	if (mlx->bcursor)
 		mlx_destroy_image(mlx->mlx, mlx->bcursor);
+	if (mlx->blackv)
+		mlx_destroy_image(mlx->mlx, mlx->blackv);
+	if (mlx->whitev)
+		mlx_destroy_image(mlx->mlx, mlx->whitev);
 }
 
 int	cleanup(void *p)

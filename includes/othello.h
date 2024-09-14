@@ -6,7 +6,7 @@
 /*   By: ccolin <ccolin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 08:18:06 by ccolin            #+#    #+#             */
-/*   Updated: 2024/09/14 07:57:09 by ccolin           ###   ########.fr       */
+/*   Updated: 2024/09/14 15:06:55 by ccolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@
 # define BLACK "./textures/black.xpm"
 # define BCURSOR "./textures/black_cursor.xpm"
 # define WCURSOR "./textures/white_cursor.xpm"
+# define BLACKV "./textures/blackv.xpm"
+# define WHITEV "./textures/whitev.xpm"
 
 typedef struct s_board
 {
@@ -40,6 +42,7 @@ typedef struct s_board
 	int		height;
 	int		width;
 	int		blackturn;
+	int		game_end;
 }					t_board;
 
 typedef struct s_sandwich
@@ -69,11 +72,17 @@ typedef struct s_mlx
 	void	*empty;
 	void	*wcursor;
 	void	*bcursor;
+	void	*blackv;
+	void	*whitev;
 	int		*height_white;
 	int		*height_black;
+	int		*height_whitev;
+	int		*height_blackv;
 	int		*height_empty;
 	int		*width_black;
 	int		*width_white;
+	int		*width_blackv;
+	int		*width_whitev;
 	int		*width_empty;
 	int		*height_bcursor;
 	int		*width_bcursor;
@@ -94,6 +103,17 @@ int		events(int keycode, void *param);
 void	ft_render_board(t_board *board, t_mlx *mlx);
 void 	find_cursor(t_param *param, t_cursor *cursor);
 void	flip(t_param *param, int y, int x);
-int	sandwich(t_param *param, t_cursor *cursor);
+int		sandwich(t_param *param, t_cursor *cursor);
+void	is_playable(t_param *param, int first);
+void	game_end(t_param *param);
+int		is_sandwichl(int y, int x, char player, char opponent, char opponentc, t_param *param);
+int		is_sandwichr(int y, int x, char player, char opponent, char opponentc, t_param *param);
+int		is_sandwichd(int y, int x, char player, char opponent, char opponentc, t_param *param);
+int		is_sandwichu(int y, int x, char player, char opponent, char opponentc, t_param *param);
+int		is_sandwichlu(int y, int x, char player, char opponent, char opponentc, t_param *param);
+int		is_sandwichld(int y, int x, char player, char opponent, char opponentc, t_param *param);
+int		is_sandwichru(int y, int x, char player, char opponent, char opponentc, t_param *param);
+int		is_sandwichrd(int y, int x, char player, char opponent, char opponentc, t_param *param);
+void	print_board(t_board *board);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ccolin <ccolin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 14:59:50 by ccolin            #+#    #+#             */
-/*   Updated: 2024/09/14 07:57:38 by ccolin           ###   ########.fr       */
+/*   Updated: 2024/09/14 14:34:15 by ccolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,22 +39,12 @@ void	print_board(t_board *board)
 		int x = 0;
 		while (board->board[y][x])  // Loop through each column until null
 		{
+			printf("%c", board->board[y][x]);fflush(stdout);
 			x++;
 		}
+		printf("\n");fflush(stdout);
 		y++;
 	}
-}
-
-void	init_sandwich(t_sandwich *sandwich)
-{
-	sandwich->l = 0;
-	sandwich->r = 0;
-	sandwich->u = 0;
-	sandwich->d = 0;
-	sandwich->lu = 0;
-	sandwich->ld = 0;
-	sandwich->ru = 0;
-	sandwich->rd = 0;
 }
 
 void	flip(t_param *param, int y, int x)
@@ -64,13 +54,13 @@ void	flip(t_param *param, int y, int x)
 		param->board->board[y][x] = B;
 		ft_render_board(param->board, param->mlx);
 		mlx_do_sync(param->mlx->mlx);
-		system("afplay ./sounds/success.mp3");
+		system("afplay ./sounds/flip.wav");
 	}
 	else
 	{
 		param->board->board[y][x] = W;
 		ft_render_board(param->board, param->mlx);
 		mlx_do_sync(param->mlx->mlx);
-		system("afplay ./sounds/success.mp3");
+		system("afplay ./sounds/flip.wav");
 	}
 }

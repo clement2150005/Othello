@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: ccolin <ccolin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/08/08 16:19:44 by ccolin            #+#    #+#              #
-#    Updated: 2024/09/13 14:39:35 by ccolin           ###   ########.fr        #
+#    Created: 2024/09/14 16:24:52 by ccolin            #+#    #+#              #
+#    Updated: 2024/09/14 16:29:57 by ccolin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,23 +32,34 @@ OBJS	= $(SRCS:.c=.o)
 RM		= rm -f
 
 %.o: %.c
-	$(CC) $(CFLAGS) $(MLX_INC) $(LIBFT_INC) -c $< -o $@
+	@echo "Compiling $<..."
+	@$(CC) $(CFLAGS) $(MLX_INC) $(LIBFT_INC) -c $< -o $@
 
-$(NAME): $(LIBFT_LIB) $(OBJS)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(MLX_LIB) $(LIBFT_LIB) $(MLX_FLAGS)
+$(NAME): $(MLX_LIB) $(LIBFT_LIB) $(OBJS)
+	@echo "Linking $(NAME)..."
+	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(MLX_LIB) $(LIBFT_LIB) $(MLX_FLAGS)
 
 $(LIBFT_LIB):
-	@make -C $(LIBFT_DIR)
+	@echo "Compiling libft..."
+	@make -C $(LIBFT_DIR) --silent
+
+$(MLX_LIB):
+	@echo "Compiling MiniLibX..."
+	@make -C $(MLX_DIR) CFLAGS=-w --silent
 
 all: $(NAME)
 
 clean:
-	$(RM) $(OBJS)
-	@make clean -C $(LIBFT_DIR)
+	@echo "Cleaning object files..."
+	@$(RM) $(OBJS)
+	@make clean -C $(LIBFT_DIR) --silent
+	@make clean -C $(MLX_DIR) --silent
 
 fclean: clean
-	$(RM) $(NAME)
-	@make fclean -C $(LIBFT_DIR)
+	@echo "Removing $(NAME)..."
+	@$(RM) $(NAME)
+	@make fclean -C $(LIBFT_DIR) --silent
+	@make clean -C $(MLX_DIR) --silent
 
 re: fclean all
 

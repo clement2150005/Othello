@@ -6,7 +6,7 @@
 /*   By: ccolin <ccolin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 17:31:21 by ccolin            #+#    #+#             */
-/*   Updated: 2024/09/14 16:20:43 by ccolin           ###   ########.fr       */
+/*   Updated: 2024/09/14 16:21:33 by ccolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,6 @@ int	is_sandwichld(int y, int x, char player,char opponent, char opponentc, t_par
 	}
 	if (param->board->board[y][x] == player)
 		return (1);
-	f("\n\nno player piece on ther side\n");fflush(stdout);
 	return (0);
 }
 

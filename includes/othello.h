@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   OTHELLO.H                                          :+:      :+:    :+:   */
+/*   othello.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccolin <ccolin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 08:18:06 by ccolin            #+#    #+#             */
-/*   Updated: 2024/09/14 15:06:55 by ccolin           ###   ########.fr       */
+/*   Updated: 2024/09/14 16:20:37 by ccolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,5 @@ int		is_sandwichlu(int y, int x, char player, char opponent, char opponentc, t_p
 int		is_sandwichld(int y, int x, char player, char opponent, char opponentc, t_param *param);
 int		is_sandwichru(int y, int x, char player, char opponent, char opponentc, t_param *param);
 int		is_sandwichrd(int y, int x, char player, char opponent, char opponentc, t_param *param);
-void	print_board(t_board *board);
 
 #endif

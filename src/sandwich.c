@@ -6,7 +6,7 @@
 /*   By: ccolin <ccolin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 17:31:21 by ccolin            #+#    #+#             */
-/*   Updated: 2024/09/14 14:34:13 by ccolin           ###   ########.fr       */
+/*   Updated: 2024/09/14 16:20:43 by ccolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,15 +88,12 @@ int	is_sandwichlu(int y, int x, char player,char opponent, char opponentc, t_par
 
 int	is_sandwichld(int y, int x, char player,char opponent, char opponentc, t_param *param)
 {
-	printf("\n\nis_sandwichld %d %d blackturn = %d player = %c opponent = %c\n", y ,x, param->board->blackturn, player, opponent);fflush(stdout);
 	if (x <= 1 || y >= 6)
 	{
-		printf("\n\nno too close to bounds\n");fflush(stdout);
 		return (0);
 	}
 	if (param->board->board[y + 1][x - 1] != opponent && param->board->board[y + 1][x - 1] != opponentc)
 	{
-		printf("\n\nno opponent in next case\n");fflush(stdout);
 		return (0);
 	}
 	x--;
@@ -108,7 +105,7 @@ int	is_sandwichld(int y, int x, char player,char opponent, char opponentc, t_par
 	}
 	if (param->board->board[y][x] == player)
 		return (1);
-	printf("\n\nno player piece on ther side\n");fflush(stdout);
+	f("\n\nno player piece on ther side\n");fflush(stdout);
 	return (0);
 }
 

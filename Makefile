@@ -1,0 +1,55 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: ccolin <ccolin@student.42.fr>              +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/08/08 16:19:44 by ccolin            #+#    #+#              #
+#    Updated: 2024/09/13 14:39:35 by ccolin           ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+NAME	= Othello
+
+CC		= cc
+CFLAGS	= -Wall -Wextra -Werror -Iincludes #-fsanitize=address
+
+MLX_DIR	= minilibx_opengl_20191021
+MLX_LIB	= $(MLX_DIR)/libmlx.a
+MLX_INC	= -I$(MLX_DIR)
+MLX_FLAGS = -L$(MLX_DIR) -lmlx -framework OpenGL -framework AppKit
+
+LIBFT_DIR = libft
+LIBFT_LIB = $(LIBFT_DIR)/libft.a
+LIBFT_INC = -I$(LIBFT_DIR) -I$(LIBFT_DIR)/includes
+
+SRC_DIR	= src
+SRCS	= $(wildcard $(SRC_DIR)/*.c)
+
+OBJS	= $(SRCS:.c=.o)
+
+RM		= rm -f
+
+%.o: %.c
+	$(CC) $(CFLAGS) $(MLX_INC) $(LIBFT_INC) -c $< -o $@
+
+$(NAME): $(LIBFT_LIB) $(OBJS)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(MLX_LIB) $(LIBFT_LIB) $(MLX_FLAGS)
+
+$(LIBFT_LIB):
+	@make -C $(LIBFT_DIR)
+
+all: $(NAME)
+
+clean:
+	$(RM) $(OBJS)
+	@make clean -C $(LIBFT_DIR)
+
+fclean: clean
+	$(RM) $(NAME)
+	@make fclean -C $(LIBFT_DIR)
+
+re: fclean all
+
+.PHONY: all clean fclean re

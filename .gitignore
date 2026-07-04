@@ -1,0 +1,7 @@
+# Build artifacts
+*.o
+*.a
+/Othello
+
+# macOS
+.DS_Store

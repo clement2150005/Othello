@@ -6,6 +6,8 @@ turns on an 8x8 board, and the game handles the full rules: only legal moves are
 allowed, captured lines are flipped in every direction, turns are skipped when a
 player has no move, and the winner is decided by piece count at the end.
 
+![Othello demo](gif/gif.gif)
+
 ## Controls
 
 - **Arrow keys** move the cursor around the board.
